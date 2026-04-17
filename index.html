@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple To-Do List app with offline support and task persistence.">
+    <meta name="theme-color" content="#0f172a">
+    <title>To-Do List</title>
+
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+<div class="app-shell">
+    <header class="app-header">
+        <h1>To-Do List</h1>
+        <p class="subtitle">Add tasks, mark them complete, and keep your list saved.</p>
+    </header>
+
+    <section class="todo-panel">
+        <form id="todo-form" class="todo-form">
+            <input id="task-input" type="text" placeholder="Add a new task..." autocomplete="off" required>
+            <button type="submit">Add</button>
+        </form>
+
+        <div class="todo-stats">
+            <span id="task-count">0 tasks</span>
+            <button id="clear-completed" type="button">Clear completed</button>
+        </div>
+
+        <ul id="task-list" class="task-list"></ul>
+    </section>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+        .catch(error => console.error('SW registration failed:', error));
+}
+</script>
+
+</body>
+</html>
